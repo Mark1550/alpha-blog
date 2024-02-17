@@ -13,13 +13,9 @@
  *= require_tree .
  *= require_self
  */
-<<<<<<< HEAD:app/assets/stylesheets/application.css
- #error_label{ color:blue
-=======
 
  @import "bootstrap";
 
  
- #error_label{ color:red
->>>>>>> 1e0d3be2a9d8da3a50995c2e67e3910f57d1dcd9:app/assets/stylesheets/application.scss
+ #error_label{ color:blue
  }
