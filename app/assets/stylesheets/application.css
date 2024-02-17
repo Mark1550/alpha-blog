@@ -15,11 +15,10 @@
  *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
 
- 
- #error_label{ color:red
- }
- .navbar {
-    background-color: blue !important;
-  }
+
+#error_label {
+  color: red
+}
+
