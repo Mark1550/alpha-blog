@@ -1,7 +1,24 @@
-<h1>Showing article details</h1>
+<h2 class="text-center mt-4"><%= @article.title %></h2>
+<div class="container"> 
+        <div class="row justify-content-md-center">
+            <div class="col-8 mt-4">
+                <div class="card text-center shadow p-1 mb-4 bg-white rounded">
+                    <div class="card-header fst-italic">
+                        By Mark Streltisn
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-start"><%= simple_format(@article.description) %></div>
+                        <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-warning" %>
+                        <%= link_to 'Delete', article_path(@article), data: { turbo_confirm: "Are you sure?",turbo_method: :delete }, class: "btn btn-outline-danger" %>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <small>Created <%=time_ago_in_words(@article.created_at)%> ago,
+                            Edited ago <%=time_ago_in_words(@article.updated_at)%>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        <%= link_to '[Back to list]', articles_path, class: "d-flex justify-content-center text-info" %>
+        </div>
+</div>
 
-<p><strong>Title: </strong><%= @article.title %></p>
-<p><strong>Description: </strong><%= @article.description %></p>
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Delete', article_path(@article), data: { turbo_confirm: "Are you sure?",turbo_method: :delete } %> |
-<%= link_to 'Back to list', articles_path %>
