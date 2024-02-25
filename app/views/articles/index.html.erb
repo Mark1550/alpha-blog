@@ -1,2 +1,8 @@
 <h1 class="text-center mt-4">Listing all articles</h1>
+<div class= "flickr_pagination d-flex justify-content-center">
+    <%= will_paginate @articles %>
+</div>
 <%= render 'article' %>
+<div class= "flickr_pagination d-flex justify-content-center mb-3">
+    <%= will_paginate @articles %>
+</div>
