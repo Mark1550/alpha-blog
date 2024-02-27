@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def gravatar_for(user, options = { size: 80 })
     email_address = user.email.downcase
     hash = Digest::MD5.hexdigest(email_address)
@@ -7,11 +8,4 @@ module ApplicationHelper
     image_tag(gravatar_url, alt: user.username, class: "rounded mx-auto d-block shadow")
   end
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id] # if @current_user isn't nil then return it, otherwise find the user.
-  end
-
-  def logged_in?
-    !!current_user # turning the object into a boolean
-  end
 end
