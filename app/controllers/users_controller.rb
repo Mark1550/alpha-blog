@@ -1,6 +1,10 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+# frozen_string_literal: true
 
+# Users Controller
+class UsersController < ApplicationController
+  before_action :set_user, only: %I[show edit update]
+  before_action :require_user, only: %I[edit update]
+  before_action :require_same_user, only: %I[edit update]
   def new
     @user = User.new
   end
@@ -16,8 +20,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def index
     @users = User.paginate(page: params[:page], per_page: 4)
@@ -44,5 +47,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @user
+      flash[:alert] = 'You can only edit or delete your own account'
+      redirect_to @user
+    end
   end
 end
