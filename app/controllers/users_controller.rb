@@ -2,9 +2,9 @@
 
 # Users Controller
 class UsersController < ApplicationController
-  before_action :set_user, only: %I[show edit update]
+  before_action :set_user, only: %I[show edit update destroy]
   before_action :require_user, only: %I[edit update]
-  before_action :require_same_user, only: %I[edit update]
+  before_action :require_same_user, only: %I[edit update destroy]
   def new
     @user = User.new
   end
@@ -37,6 +37,13 @@ class UsersController < ApplicationController
 
   def show
     @articles = @user.articles.paginate(page: params[:page], per_page: 4)
+  end
+
+  def destroy
+    @user.destroy
+    session[:user_id] = nil
+    flash[:notice] = 'Account and all associated articles succesfully deleted'
+    redirect_to articles_path
   end
 
   private
