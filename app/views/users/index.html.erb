@@ -14,8 +14,14 @@
                         <%= link_to gravatar_for(user, size: 200), user_path(user)%>
                         <h5 class="card-title"><%= user.articles.size %> articles </h5>
                         <%= link_to 'View Profile', user_path(user), class: "btn btn-outline-success"%>
-                        <% if logged_in? && user == current_user %>
-                            <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-warning" %>
+                        <% if logged_in? %>
+                            <% if user == current_user %>
+                                <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-warning" %>
+                            <% end %>
+                            <% if current_user.admin? %>
+                                <%= link_to 'Delete profile', user_path(user), data: { turbo_confirm: "Are you sure?",turbo_method: :delete }, class: "btn btn-outline-danger" %>
+                            <% end %>
+
                         <% end %>
                     </div>
                     <div class="card-footer text-body-secondary">
