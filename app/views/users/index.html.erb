@@ -12,7 +12,7 @@
                     </div>
                     <div class="card-body">
                         <%= link_to gravatar_for(user, size: 200), user_path(user)%>
-                        <h5 class="card-title"><%= user.articles.size %> articles </h5>
+                        <h5 class="card-title"><%= pluralize(user.articles.count, "article") %></h5>
                         <%= link_to 'View Profile', user_path(user), class: "btn btn-outline-success"%>
                         <% if logged_in? %>
                             <% if user == current_user %>
